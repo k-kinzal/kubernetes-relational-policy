@@ -1,0 +1,114 @@
+{
+    "-": [
+      {
+        "apiVersion": "networking.k8s.io/v1beta1",
+        "kind": "Ingress",
+        "metadata": {
+          "name": "ingress-a"
+        },
+        "spec": {
+          "rules": [
+            {
+              "http": {
+                "paths": [
+                  {
+                    "path": "/path-a",
+                    "backend": {
+                      "serviceName": "service-a",
+                      "servicePort": 80
+                    }
+                  },
+                  {
+                    "path": "/path-b",
+                    "backend": {
+                      "serviceName": "service-b",
+                      "servicePort": 80
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "apiVersion": "networking.k8s.io/v1beta1",
+        "kind": "Ingress",
+        "metadata": {
+          "name": "ingress-b"
+        },
+        "spec": {
+          "rules": [
+            {
+              "http": {
+                "paths": [
+                  {
+                    "path": "/path-a",
+                    "backend": {
+                      "serviceName": "service-a",
+                      "servicePort": 443
+                    }
+                  },
+                  {
+                    "path": "/path-b",
+                    "backend": {
+                      "serviceName": "service-b",
+                      "servicePort": 443
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": {
+          "name": "service-a"
+        },
+        "spec": {
+          "selector": {
+            "app": "MyApp"
+          },
+          "ports": [
+            {
+              "protocol": "TCP",
+              "port": 80,
+              "targetPort": 9376
+            },
+            {
+              "protocol": "TCP",
+              "port": 443,
+              "targetPort": 9376
+            }
+          ]
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": {
+          "name": "service-b"
+        },
+        "spec": {
+          "selector": {
+            "app": "MyApp"
+          },
+          "ports": [
+            {
+              "protocol": "TCP",
+              "port": 80,
+              "targetPort": 9376
+            },
+            {
+              "protocol": "TCP",
+              "port": 443,
+              "targetPort": 9376
+            }
+          ]
+        }
+      }
+    ]
+  }
