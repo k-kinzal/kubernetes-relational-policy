@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: kinzal/cimg-opa:latest
+    steps:
+      - checkout
+      - run: pwd
+      - run: opa test -v .
+
+workflows:
+  version: 2
+  integration:
+    jobs:
+      - test
