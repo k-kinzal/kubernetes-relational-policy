@@ -6,7 +6,15 @@ import data.kubernetes
 # kind: KubernetesRelationalPolicy
 # spec:
 #   ingress:
+#     disableAllRule: false
 #     disabledMatchBackendServiceRule: false
+
+
+config_disable_ingress_rule {
+    kubernetes.resources[resource]
+    resource.kind == "KubernetesRelationalPolicy"
+    resource["spec"]["ingress"]["disableAllRule"] == true
+}
 
 config_disable_ingress_match_backend_service_rule {
     kubernetes.resources[resource]

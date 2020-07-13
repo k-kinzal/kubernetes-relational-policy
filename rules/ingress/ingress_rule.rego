@@ -3,6 +3,7 @@ package rules
 import data.kubernetes
 
 deny[msg] {
+    not config_disable_ingress_rule
     not config_disable_ingress_match_backend_service_rule
 
     kubernetes.ingresses[ingress]
