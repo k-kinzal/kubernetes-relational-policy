@@ -7,7 +7,10 @@ import data.kubernetes
 # spec:
 #   ingress:
 #     disableAllRule: false
-#     disabledMatchBackendServiceRule: false
+#     disableMatchBackendServiceRule: false
+#   service:
+#     disableAllRule: false
+#     disableMatchTargetPortPodRule: false
 
 
 config_disable_ingress_rule {
@@ -19,5 +22,17 @@ config_disable_ingress_rule {
 config_disable_ingress_match_backend_service_rule {
     kubernetes.resources[resource]
     resource.kind == "KubernetesRelationalPolicy"
-    resource["spec"]["ingress"]["disabledMatchBackendServiceRule"] == true
+    resource["spec"]["ingress"]["disableMatchBackendServiceRule"] == true
+}
+
+config_disable_service_rule {
+    kubernetes.resources[resource]
+    resource.kind == "KubernetesRelationalPolicy"
+    resource["spec"]["service"]["disabledAllRule"] == true
+}
+
+config_disable_service_match_target_port_pod_rule {
+    kubernetes.resources[resource]
+    resource.kind == "KubernetesRelationalPolicy"
+    resource["spec"]["service"]["disableMatchTargetPortPodRule"] == true
 }

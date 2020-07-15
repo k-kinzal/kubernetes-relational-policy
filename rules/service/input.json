@@ -14,7 +14,7 @@
             {
               "protocol": "TCP",
               "port": 80,
-              "targetPort": 9376
+              "targetPort": 80
             }
           ]
         }
@@ -45,7 +45,6 @@
                   "image": "nginx:1.14.2",
                   "ports": [
                     {
-                      "protocol": "TCP",
                       "containerPort": 9376
                     }
                   ]
