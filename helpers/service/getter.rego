@@ -9,7 +9,7 @@ get_pods_match_service(service) = all_resources {
     ports := {r | r := service.spec.ports[i]}
     pods := get_pods(input)
     # match selector
-    match_pods := {r | r := pods[i]; pods[i].metadata.labels[j] == service.spec.selector[k]}
+    match_pods := {r | r := pods[i]; match_service_selector_label(service, pods[i].metadata.labels)}
     # match protocol
     match_protocol_pods_a := {r | r := match_pods[i]; match_pods[i].spec.containers[j].ports[k].protocol == ports[l].protocol}
     match_protocol_pods_b := {r |
