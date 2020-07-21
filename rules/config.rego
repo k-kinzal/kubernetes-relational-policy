@@ -13,6 +13,7 @@ import data.kubernetes
 #     disableMatchTargetPortPodRule: false
 #   deployment:
 #     disableAllRule: false
+#     disableMatchLabelSelector: false
 
 
 config_disable_ingress_rule {
